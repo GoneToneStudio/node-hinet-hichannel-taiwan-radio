@@ -60,7 +60,7 @@ network.get_public_ip(function(err, ip) {
 3. 開啟開發人員工具 (按 F12)
 4. 上方點選 Network，看最下面那行，格式為 `rich-ra000000` (例如 `hich-ra000040`)，後續的 -audio 不需要
 
-![](https://api.reh.tw/images/get_hichannel_code.gif)
+![](/images/get_hichannel_code.gif)
 
 ## License
 [MIT](LICENSE)
