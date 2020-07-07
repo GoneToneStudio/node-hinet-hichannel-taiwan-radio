@@ -1,0 +1,40 @@
+{
+    "name": "hinet-hichannel-taiwan-radio",
+    "version": "1.0.0",
+    "description": "取得 HiNet hichannel 台灣電台的 Token 或串流 m3u8 網址！",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "examples": "node ./examples/all_demo.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio.git"
+    },
+    "keywords": [
+        "radio",
+        "hinet",
+        "hichannel",
+        "taiwan",
+        "node",
+        "m3u8",
+        "live",
+        "stream"
+    ],
+    "author": {
+        "name": "張文相 Zhang Wenxiang (旋風之音 GoneTone)",
+        "email": "p29022716@gmail.com",
+        "url": "https://github.com/GoneTone"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio/issues"
+    },
+    "homepage": "https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio",
+    "dependencies": {
+        "axios": "^0.19.2"
+    },
+    "devDependencies": {
+        "network": "^0.5.0"
+    }
+}
