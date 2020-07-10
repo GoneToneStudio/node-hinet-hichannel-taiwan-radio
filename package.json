@@ -1,11 +1,12 @@
 {
     "name": "hinet-hichannel-taiwan-radio",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "取得 HiNet hichannel 台灣電台的 Token 或串流 m3u8 網址！",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "examples": "node ./examples/all_demo.js"
+        "webpack": "webpack --config webpack.config.js",
+        "example": "node ./examples/all_demo.js"
     },
     "repository": {
         "type": "git",
@@ -19,7 +20,8 @@
         "node",
         "m3u8",
         "live",
-        "stream"
+        "stream",
+        "webpack"
     ],
     "author": {
         "name": "張文相 Zhang Wenxiang (旋風之音 GoneTone)",
@@ -35,6 +37,8 @@
         "axios": "^0.19.2"
     },
     "devDependencies": {
-        "network": "^0.5.0"
+        "network": "^0.5.0",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.12"
     }
 }

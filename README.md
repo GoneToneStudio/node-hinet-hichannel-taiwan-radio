@@ -2,13 +2,20 @@
 取得 HiNet hichannel 台灣電台的 Token 或串流 m3u8 網址！
 
 ## 安裝
+### Node.js
     npm install hinet-hichannel-taiwan-radio
+
+### 瀏覽器
+```html
+<script src="dist/HiNetHichannel.bundle.js"></script>
+```
+
+### Webpack
+    npm run webpack
 
 ## 使用方法
 ### 使用 HiNetHichannel 類別
 ```js
-const HiNetHichannel = require("hinet-hichannel-taiwan-radio");
-
 const hichannel = new HiNetHichannel("Hichannel 頻道代碼 (string)", "IP 位置 (string)");
 ```
 
@@ -26,7 +33,7 @@ hichannel.buildPlayUrl().then(m3u8Url => {
 console.log(hichannel.getToken("時間戳 (int)", "填入 1 或 2 (int)"));
 ```
 
-### 完整範例
+### 完整範例 (Node.js)
 ```js
 const network = require("network");
 const HiNetHichannel = require("hinet-hichannel-taiwan-radio");
