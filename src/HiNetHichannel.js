@@ -6,6 +6,7 @@
 'use strict';
 
 const crypto = require("crypto");
+const getM3u8Url = require("../lib/getM3u8Url");
 const checkUrl = require("../lib/checkUrl");
 
 class HiNetHichannel {
@@ -42,7 +43,7 @@ class HiNetHichannel {
     /**
      * 建立 Hichannel 播放網址 (m3u8)
      *
-     * @returns {Promise<string|Error>}
+     * @returns {Promise<string|Error>|Error}
      */
     buildPlayUrl() {
         const expire1 = (Math.floor(Date.now() / 1000) + (60 * 5));
@@ -50,9 +51,13 @@ class HiNetHichannel {
         const token1 = this.getToken(expire1, 1);
         const token2 = this.getToken(expire2, 2);
 
-        const m3u8Url = `http://radio-hichannel.cdn.hinet.net/live/pool/${this._hichannelChannelCode}/ra-hls/${this._hichannelChannelCode}-audio_track_0_und=128000.m3u8?token1=${token1}&token2=${token2}&expire1=${expire1}&expire2=${expire2}`;
-
         return new Promise(async(resolve, reject) => {
+            const m3u8Url = await getM3u8Url(this._hichannelChannelCode, `http://radio-hichannel.cdn.hinet.net/live/pool/${this._hichannelChannelCode}/ra-hls/index.m3u8?token1=${token1}&token2=${token2}&expire1=${expire1}&expire2=${expire2}`);
+
+            if (!m3u8Url) {
+                return reject(Error(`Hichannel Code「${this._hichannelChannelCode}」廣播電台 m3u8 網址取得失敗。`));
+            }
+
             let check;
             for (let i = 0; i < 10; i++) {
                 check = await checkUrl(m3u8Url);

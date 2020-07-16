@@ -1,6 +1,6 @@
 {
     "name": "hinet-hichannel-taiwan-radio",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "取得 HiNet hichannel 台灣電台的 Token 或串流 m3u8 網址！",
     "main": "index.js",
     "scripts": {
@@ -34,7 +34,8 @@
     },
     "homepage": "https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio",
     "dependencies": {
-        "axios": "^0.19.2"
+        "axios": "^0.19.2",
+        "m3u8-parser": "^4.4.0"
     },
     "devDependencies": {
         "network": "^0.5.0",
