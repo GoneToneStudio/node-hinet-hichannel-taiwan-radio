@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 const packageJson = require('./package.json');
@@ -20,33 +20,20 @@ module.exports = {
     entry: {
         HiNetHichannel: './src/HiNetHichannel.js',
     },
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            }
-        ]
-    },
     output: {
-        filename: `[name].bundle.js`,
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'var',
         library: '[name]'
     },
     plugins: [
-        new UglifyJsPlugin({
-            uglifyOptions: {
+        new TerserPlugin({
+            terserOptions: {
                 output: {
                     comments: false
                 }
-            }
+            },
+            extractComments: false
         }),
         new webpack.BannerPlugin({
             banner: banner
