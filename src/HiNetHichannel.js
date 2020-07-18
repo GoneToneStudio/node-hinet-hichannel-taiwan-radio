@@ -52,7 +52,7 @@ class HiNetHichannel {
         const token2 = this.getToken(expire2, 2);
 
         return new Promise(async(resolve, reject) => {
-            const m3u8Url = await getM3u8Url(this._hichannelChannelCode, `http://radio-hichannel.cdn.hinet.net/live/pool/${this._hichannelChannelCode}/ra-hls/index.m3u8?token1=${token1}&token2=${token2}&expire1=${expire1}&expire2=${expire2}`);
+            const m3u8Url = await getM3u8Url(this._hichannelChannelCode, token1, token2, expire1, expire2);
 
             if (!m3u8Url) {
                 return reject(Error(`Hichannel Code「${this._hichannelChannelCode}」廣播電台 m3u8 網址取得失敗。`));
