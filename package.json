@@ -1,7 +1,7 @@
 {
     "name": "hinet-hichannel-taiwan-radio",
-    "version": "1.1.4",
-    "description": "取得 HiNet hichannel 台灣電台的 Token 或串流 m3u8 網址！",
+    "version": "2.0.0",
+    "description": "取得 HiNet hichannel 台灣電台的 m3u8 串流網址、節目表和其他資訊！",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -38,7 +38,6 @@
         "m3u8-parser": "^4.4.0"
     },
     "devDependencies": {
-        "network": "^0.5.0",
         "terser-webpack-plugin": "^3.0.7",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12"

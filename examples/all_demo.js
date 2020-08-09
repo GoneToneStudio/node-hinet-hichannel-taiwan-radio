@@ -1,24 +1,43 @@
-const network = require("network");
 const HiNetHichannel = require("..");
 
-network.get_public_ip(function(err, ip) {
-    if (!err) {
-        const hichannel = new HiNetHichannel("hich-ra000040", ip); //hich-ra000040 => KISS RADIO 大眾廣播電台
+const hichannel = new HiNetHichannel("KISS RADIO 大眾廣播電台"); //請輸入完整頻道名稱
 
-        /* 取得 HiNet hichannel m3u8 串流網址 */
-        hichannel.buildPlayUrl().then(m3u8Url => {
-            console.log(`m3u8 串流網址：${m3u8Url}`);
-        }).catch(e => {
-            console.error(e);
-        });
+/* 加載 HiNet hichannel API */
+hichannel.loadApi().then(() => {
+    /* 取得 HiNet hichannel m3u8 串流網址 */
+    hichannel.playUrl().then(playUrl => {
+        console.log(`m3u8 串流網址：${playUrl}`);
+    }).catch(e => {
+        console.error(e);
+    });
 
-        /* 取得 HiNet hichannel Token */
-        const expire1 = (Math.floor(Date.now() / 1000) + (60 * 5));
-        const expire2 = (expire1 + (60 * 60 * 24));
+    try {
+        /* 取得 HiNet hichannel 頻道名稱 */
+        console.log(`頻道名稱：${hichannel.title()}`);
 
-        console.log(`Token1：${hichannel.getToken(expire1, 1)}`);
-        console.log(`Token2：${hichannel.getToken(expire2, 2)}`);
-    } else {
-        console.log(`無法取得 IP：${err}`);
+        /* 取得 HiNet hichannel 頻道 ID */
+        console.log(`頻道 ID：${hichannel.id()}`);
+
+        /* 取得 HiNet hichannel 頻道描述 */
+        console.log(`頻道描述：${hichannel.desc()}`);
+
+        /* 取得 HiNet hichannel 頻道區域 */
+        console.log(`頻道區域：${hichannel.area()}`);
+
+        /* 取得 HiNet hichannel 頻道類型 */
+        console.log(`頻道類型：${hichannel.type()}`);
+
+        /* 取得 HiNet hichannel 頻道圖片網址 */
+        console.log(`頻道圖片網址：${hichannel.imageUrl()}`);
+
+        /* 取得 HiNet hichannel 頻道節目表 */
+        console.log(`頻道節目表：${JSON.stringify(hichannel.programList())}`);
+
+        /* 取得 HiNet hichannel 頻道目前節目名稱 */
+        console.log(`頻道目前節目名稱：${hichannel.nowProgramName()}`);
+    } catch (e) {
+        console.error(e);
     }
+}).catch(e => {
+    console.error(e);
 });
