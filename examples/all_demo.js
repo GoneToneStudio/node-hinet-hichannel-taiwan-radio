@@ -30,11 +30,12 @@ hichannel.loadApi().then(() => {
         /* 取得 HiNet hichannel 頻道圖片網址 */
         console.log(`頻道圖片網址：${hichannel.imageUrl()}`);
 
-        /* 取得 HiNet hichannel 頻道節目表 */
-        console.log(`頻道節目表：${JSON.stringify(hichannel.programList())}`);
-
         /* 取得 HiNet hichannel 頻道目前節目名稱 */
         console.log(`頻道目前節目名稱：${hichannel.nowProgramName()}`);
+
+        /* 取得 HiNet hichannel 頻道節目表 */
+        console.log("頻道節目表：");
+        console.log(hichannel.programList());
     } catch (e) {
         console.error(e);
     }

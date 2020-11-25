@@ -36,7 +36,7 @@ class HiNetHichannel {
         if (api) {
             this._loadApi = true;
         } else {
-            throw Error(`Hichannel 頻道名稱「${this._hichannelChannelName}」廣播電台找不到，請確認您輸入的頻道名稱是否完全一樣並且正確。`);
+            throw Error(`Hichannel 頻道名稱「${this._hichannelChannelName}」廣播電台找不到或資料取得失敗。`);
         }
     }
 

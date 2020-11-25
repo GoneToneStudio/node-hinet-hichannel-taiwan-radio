@@ -75,16 +75,18 @@ class HichannelApi {
 
         if (axios["status"] && axios["status"] === 200) {
             const m3u8Url = axios["data"]["_adc"];
-            const m3u8Axios = await promisifiedAxios(m3u8Url);
+            if (m3u8Url) {
+                const m3u8Axios = await promisifiedAxios(m3u8Url);
 
-            if (m3u8Axios["status"] && m3u8Axios["status"] === 200) {
-                const parseUrl = new URL(m3u8Url);
-                const parserM3u8Url = new m3u8Parser.Parser();
+                if (m3u8Axios["status"] && m3u8Axios["status"] === 200) {
+                    const parseUrl = new URL(m3u8Url);
+                    const parserM3u8Url = new m3u8Parser.Parser();
 
-                parserM3u8Url.push(m3u8Axios["data"]);
-                parserM3u8Url.end();
+                    parserM3u8Url.push(m3u8Axios["data"]);
+                    parserM3u8Url.end();
 
-                return `${parseUrl.protocol}//${parseUrl.hostname}${parseUrl.pathname.replace("index.m3u8", parserM3u8Url.manifest.playlists[0].uri)}`;
+                    return `${parseUrl.protocol}//${parseUrl.hostname}${parseUrl.pathname.replace("index.m3u8", parserM3u8Url.manifest.playlists[0].uri)}`;
+                }
             }
         }
 
