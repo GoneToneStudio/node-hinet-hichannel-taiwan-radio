@@ -199,7 +199,7 @@ const {HiNetHichannel, Proxy} = require("hinet-hichannel-taiwan-radio");
 const proxy = new Proxy("主機名", 3128, "http");
 //proxy.login("帳號", "密碼"); //如果 Proxy 伺服器需要驗證，請調用這登入
 
-const hichannel = new HiNetHichannel("KISS RADIO 大眾廣播電台", proxy);
+const hichannel = new HiNetHichannel("電台名稱", proxy);
 ```
 
 ## 補充
