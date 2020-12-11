@@ -12,18 +12,22 @@
 
 const hichannelApi = require("./hichannelApi");
 const checkUrl = require("./checkUrl");
+const Proxy = require("./Proxy");
 
 class HiNetHichannel {
     /**
      * HiNetHichannel constructor.
      *
      * @param {string} hichannelChannelName Hichannel 頻道名稱
+     * @param {Proxy|null} proxy 代理伺服器 (預設不使用代理)
      */
-    constructor(hichannelChannelName) {
+    constructor(hichannelChannelName, proxy = null) {
         this._hichannelChannelName = hichannelChannelName;
 
-        this._hichannel = new hichannelApi(this._hichannelChannelName);
+        this._hichannel = new hichannelApi(this._hichannelChannelName, proxy);
         this._loadApi = false;
+
+        this._proxy = proxy;
     }
 
     /**
@@ -36,7 +40,7 @@ class HiNetHichannel {
         if (api) {
             this._loadApi = true;
         } else {
-            throw Error(`Hichannel 頻道名稱「${this._hichannelChannelName}」廣播電台找不到或資料取得失敗。`);
+            throw Error(`Hichannel 頻道名稱「${this._hichannelChannelName}」廣播電台 API 加載失敗。`);
         }
     }
 
@@ -55,7 +59,7 @@ class HiNetHichannel {
 
             let check;
             for (let i = 0; i < 10; i++) {
-                check = await checkUrl(m3u8Url);
+                check = await checkUrl(m3u8Url, this._proxy);
                 if (check.status) {
                     return m3u8Url;
                 }
