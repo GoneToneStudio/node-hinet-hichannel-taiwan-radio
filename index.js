@@ -13,13 +13,7 @@
 const HiNetHichannel = require("./src/HiNetHichannel");
 const Proxy = require("./src/Proxy");
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 module.exports = {
     HiNetHichannel,
     Proxy
 };
-
-exports.default = HiNetHichannel;
