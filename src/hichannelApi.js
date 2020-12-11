@@ -14,14 +14,16 @@
 
 const promisifiedAxios = require("./promisifiedAxios");
 const m3u8Parser = require("m3u8-parser");
+const Proxy = require("./Proxy");
 
 class HichannelApi {
     /**
      * HichannelApi constructor.
      *
      * @param {string} hichannelChannelName Hichannel 頻道名稱
+     * @param {Proxy|null} proxy 代理伺服器 (預設不使用代理)
      */
-    constructor(hichannelChannelName) {
+    constructor(hichannelChannelName, proxy = null) {
         this._hichannelChannelName = hichannelChannelName;
 
         this._hichannelUrl = "https://hichannel.hinet.net";
@@ -33,6 +35,8 @@ class HichannelApi {
         this._hichannelApiPlayerUrl = "cp.do";
         this._hichannelApiProgramList = "getProgramList.do";
         this._hichannelApiProgramNow = "getNowProgram.do";
+
+        this._proxy = proxy;
     }
 
     /**
@@ -44,7 +48,7 @@ class HichannelApi {
         const hichannelApiUrl = `${this._hichannelUrl}${this._hichannelRadioPath}`;
         let hichannelChannelList = [];
 
-        const hichannelChannelIDAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiChannelList}?keyword=${encodeURIComponent(this._hichannelChannelName)}`);
+        const hichannelChannelIDAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiChannelList}?keyword=${encodeURIComponent(this._hichannelChannelName)}`, this._proxy);
         if (hichannelChannelIDAxios["status"] && hichannelChannelIDAxios["status"] === 200) {
             hichannelChannelList = hichannelChannelIDAxios["data"]["list"];
 
@@ -53,9 +57,9 @@ class HichannelApi {
                 if (hichannelChannelTitle === this._hichannelChannelName) {
                     this._hichannelChannelID = hichannelChannelList[0]["channel_id"];
 
-                    this._hichannelApiPlayerUrlAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiPlayerUrl}?id=${this._hichannelChannelID}`);
-                    this._hichannelApiProgramListAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiProgramList}?channelId=${this._hichannelChannelID}`);
-                    this._hichannelApiProgramNowAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiProgramNow}?id=${this._hichannelChannelID}&program=1`);
+                    this._hichannelApiPlayerUrlAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiPlayerUrl}?id=${this._hichannelChannelID}`, this._proxy);
+                    this._hichannelApiProgramListAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiProgramList}?channelId=${this._hichannelChannelID}`, this._proxy);
+                    this._hichannelApiProgramNowAxios = await promisifiedAxios(`${hichannelApiUrl}${this._hichannelApiProgramNow}?id=${this._hichannelChannelID}&program=1`, this._proxy);
 
                     return true;
                 }
@@ -76,7 +80,7 @@ class HichannelApi {
         if (axios["status"] && axios["status"] === 200) {
             const m3u8Url = axios["data"]["_adc"];
             if (m3u8Url) {
-                const m3u8Axios = await promisifiedAxios(m3u8Url);
+                const m3u8Axios = await promisifiedAxios(m3u8Url, this._proxy);
 
                 if (m3u8Axios["status"] && m3u8Axios["status"] === 200) {
                     const parseUrl = new URL(m3u8Url);
