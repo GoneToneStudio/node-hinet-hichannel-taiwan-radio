@@ -1,15 +1,6 @@
-const {HiNetHichannel} = require("..");
-//const {HiNetHichannel, Proxy} = require("..");
-
-/*
- * 連線到 Proxy 伺服器
- * 如果運行此程式的伺服器不在台灣，請設定台灣的 Proxy 伺服器，否則取得的串流網址會驗證失敗 (HTTP 403 Forbidden)，但如果播放端 IP 在國外一樣會被阻擋就是了。
- */
-//const proxy = new Proxy("主機名", 3128, "http");
-//proxy.login("帳號", "密碼"); //如果 Proxy 伺服器需要驗證，請調用這登入
+const HiNetHichannel = require("..");
 
 const hichannel = new HiNetHichannel("KISS RADIO 大眾廣播電台"); //請輸入完整頻道名稱
-//const hichannel = new HiNetHichannel("KISS RADIO 大眾廣播電台", proxy); //Proxy
 
 /* 加載 HiNet hichannel API */
 hichannel.loadApi().then(() => {
