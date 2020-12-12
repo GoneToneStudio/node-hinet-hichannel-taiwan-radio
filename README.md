@@ -5,7 +5,7 @@ PHP 版本：[https://github.com/GoneToneStudio/php-hinet-hichannel-taiwan-radio
 
 ## 注意
 - HiNet hichannel m3u8 串流網址會阻擋國外 IP 訪問 (HTTP 403 Forbidden)。
-- 收聽端 IP 和用來取得 m3u8 串流網址的伺服器 IP 要是相同的，不然無法播放 (HTTP 403 Forbidden)，目前正在研究如何克服，方法大致上知道怎麼做，只是需要時間。
+- 播放端 IP 和用來取得 m3u8 串流網址的伺服器 IP 要是相同的，不然無法播放 (HTTP 403 Forbidden)，可以嘗試在伺服端處理好在串流給播放端，就二次串流。
 
 ## 問題
 如果發現任何 BUG，請在此回報：[https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio/issues](https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio/issues)
@@ -192,7 +192,7 @@ hichannel.loadApi().then(() => {
 ```
 
 ## 代理 (Proxy)
-如果運行此程式的伺服器不在台灣，請設定台灣的 Proxy 伺服器，否則取得的串流網址會驗證失敗 (HTTP 403 Forbidden)，但如果播放端 IP 在國外一樣會被阻擋就是了。
+如果運行此程式的伺服器不在台灣，請設定台灣的 Proxy 伺服器，否則取得的串流網址會驗證失敗 (HTTP 403 Forbidden)，但如果播放端 IP 和用來取得 m3u8 串流網址的伺服器 IP 不同一樣會被阻擋就是了，可以嘗試在伺服端處理好在串流給播放端，就二次串流。
 ```javascript
 const {HiNetHichannel, Proxy} = require("hinet-hichannel-taiwan-radio");
 
