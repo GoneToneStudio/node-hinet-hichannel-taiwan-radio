@@ -11,5 +11,9 @@
 'use strict';
 
 const HiNetHichannel = require("./src/HiNetHichannel");
+const Proxy = require("./src/Proxy");
 
-module.exports = HiNetHichannel;
+module.exports = {
+    HiNetHichannel,
+    Proxy
+};
