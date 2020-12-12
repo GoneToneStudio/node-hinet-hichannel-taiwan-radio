@@ -1,6 +1,6 @@
 {
     "name": "hinet-hichannel-taiwan-radio",
-    "version": "2.1.0",
+    "version": "2.2.1",
     "description": "取得 HiNet hichannel 台灣電台的 m3u8 串流網址、節目表和其他資訊！",
     "main": "index.js",
     "scripts": {
