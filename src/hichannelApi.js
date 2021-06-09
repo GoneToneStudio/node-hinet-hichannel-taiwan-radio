@@ -89,7 +89,7 @@ class HichannelApi {
                     parserM3u8Url.push(m3u8Axios["data"]);
                     parserM3u8Url.end();
 
-                    return `${parseUrl.protocol}//${parseUrl.hostname}${parseUrl.pathname.replace("index.m3u8", parserM3u8Url.manifest.playlists[0].uri)}`;
+                    return `${parseUrl.protocol}//${parseUrl.hostname}${parseUrl.pathname.replace("playlist.m3u8", parserM3u8Url.manifest.playlists[0].uri)}`;
                 }
             }
         }
