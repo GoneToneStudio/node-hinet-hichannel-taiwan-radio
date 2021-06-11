@@ -13,7 +13,7 @@
 const {HiNetHichannel, Proxy} = require("..");
 
 let hichannel;
-test('Init', async () => {
+test('Init', () => {
   const proxy = new Proxy("gonetone.reh.tw", 3128, "http");
   proxy.login("Test", "29022716");
 
@@ -29,42 +29,42 @@ test('Get Play Url', async () => {
   expect(playUrl).toMatch(/https?:\/\/(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])\/live\/[a-zA-Z0-9]+\/chunklist\.m3u8\?token=(.*)&expires=(.*)/i);
 });
 
-test('Get Title', async () => {
-  const title = await hichannel.title();
+test('Get Title', () => {
+  const title = hichannel.title();
   expect(typeof title).toBe('string');
 });
 
-test('Get ID', async () => {
-  const id = await hichannel.id();
+test('Get ID', () => {
+  const id = hichannel.id();
   expect(typeof id).toBe('string');
 });
 
-test('Get Desc', async () => {
-  const desc = await hichannel.desc();
+test('Get Desc', () => {
+  const desc = hichannel.desc();
   expect(typeof desc).toBe('string');
 });
 
-test('Get Area', async () => {
-  const area = await hichannel.area();
+test('Get Area', () => {
+  const area = hichannel.area();
   expect(typeof area).toBe('string');
 });
 
-test('Get Type', async () => {
-  const type = await hichannel.type();
+test('Get Type', () => {
+  const type = hichannel.type();
   expect(typeof type).toBe('string');
 });
 
-test('Get Image Url', async () => {
-  const imageUrl = await hichannel.imageUrl();
+test('Get Image Url', () => {
+  const imageUrl = hichannel.imageUrl();
   expect(imageUrl).toMatch(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/i);
 });
 
-test('Get Now Program Name', async () => {
-  const nowProgramName = await hichannel.nowProgramName();
+test('Get Now Program Name', () => {
+  const nowProgramName = hichannel.nowProgramName();
   expect(typeof nowProgramName).toBe('string');
 });
 
-test('Get Program List', async () => {
-  const programList = await hichannel.programList();
+test('Get Program List', () => {
+  const programList = hichannel.programList();
   expect(Array.isArray(programList)).toBe(true);
 });
