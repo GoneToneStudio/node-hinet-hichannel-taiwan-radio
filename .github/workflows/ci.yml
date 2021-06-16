@@ -12,6 +12,10 @@ jobs:
   test:
     runs-on: ${{ matrix.operating-system }}
 
+    env:
+      PROXY_TEST_USERNAME: ${{ secrets.PROXY_TEST_USERNAME }}
+      PROXY_TEST_PASSWORD: ${{ secrets.PROXY_TEST_PASSWORD }}
+
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]
@@ -32,6 +36,3 @@ jobs:
 
       - name: Jest Tests
         run: npm test
-        env:
-          PROXY_TEST_USERNAME: ${{ secrets.PROXY_TEST_USERNAME }}
-          PROXY_TEST_PASSWORD: ${{ secrets.PROXY_TEST_PASSWORD }}
