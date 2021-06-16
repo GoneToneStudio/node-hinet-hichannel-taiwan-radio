@@ -17,10 +17,6 @@ jobs:
         operating-system: [ ubuntu-latest ]
         node-version: [ 12.x, 14.x, 15.x, 16.x ]
 
-    env:
-      PROXY_TEST_USERNAME: ${{ secrets.PROXY_TEST_USERNAME }}
-      PROXY_TEST_PASSWORD: ${{ secrets.PROXY_TEST_PASSWORD }}
-
     name: Node.js ${{ matrix.node-version }} Test on ${{ matrix.operating-system }}
     steps:
       - name: Checkout
@@ -36,3 +32,6 @@ jobs:
 
       - name: Jest Tests
         run: npm test
+        env:
+          PROXY_TEST_USERNAME: ${{ secrets.PROXY_TEST_USERNAME }}
+          PROXY_TEST_PASSWORD: ${{ secrets.PROXY_TEST_PASSWORD }}
