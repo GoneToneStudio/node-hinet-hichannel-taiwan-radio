@@ -32,3 +32,6 @@ jobs:
 
       - name: Jest Tests
         run: npm test
+        env:
+          PROXY_TEST_USERNAME: ${{ secrets.PROXY_TEST_USERNAME }}
+          PROXY_TEST_PASSWORD: ${{ secrets.PROXY_TEST_PASSWORD }}

@@ -15,7 +15,7 @@ const {HiNetHichannel, Proxy} = require("..");
 let hichannel;
 test('Init', () => {
   const proxy = new Proxy("gonetone.reh.tw", 3128, "http");
-  proxy.login("Test", "29022716");
+  proxy.login(process.env.PROXY_TEST_USERNAME, process.env.PROXY_TEST_PASSWORD);
 
   hichannel = new HiNetHichannel("KISS RADIO 大眾廣播電台", proxy);
 });
