@@ -17,10 +17,10 @@ const promisifiedAxios = require("./promisifiedAxios");
 /**
  * 檢查網址狀態碼是否是 200
  *
- * @param {string} url 網址
+ * @param {String} url 網址
  * @param {Proxy|null} proxy 代理伺服器 (預設不使用代理)
  *
- * @returns {{status: boolean, msg: string}}
+ * @returns {Promise<{status: Boolean, msg: String}>}
  */
 const checkUrl = async(url, proxy = null) => {
     let axios = await promisifiedAxios(url, proxy);

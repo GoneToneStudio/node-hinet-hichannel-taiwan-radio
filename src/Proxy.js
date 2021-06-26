@@ -16,9 +16,9 @@ class Proxy {
     /**
      * Proxy constructor.
      *
-     * @param {string} host 主機名
-     * @param {number} port 端口 (預設 3128)
-     * @param {string} protocol 協定 (預設 http)
+     * @param {String} host 主機名
+     * @param {Number} port 端口 (預設 3128)
+     * @param {String} protocol 協定 (預設 http)
      */
     constructor(host, port = 3128, protocol = "http") {
         this._host = host;
@@ -29,8 +29,8 @@ class Proxy {
     /**
      * 登入
      *
-     * @param {string} username 帳號
-     * @param {string} password 密碼
+     * @param {String} username 帳號
+     * @param {String} password 密碼
      */
     login(username, password) {
         this._username = username;
@@ -38,7 +38,7 @@ class Proxy {
     }
 
     /**
-     * @returns {string}
+     * @returns {String}
      */
     get() {
         const url = `${this._host}:${this._port}`;

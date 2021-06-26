@@ -12,13 +12,12 @@
 
 const hichannelApi = require("./hichannelApi");
 const checkUrl = require("./checkUrl");
-const Proxy = require("./Proxy");
 
 class HiNetHichannel {
     /**
      * HiNetHichannel constructor.
      *
-     * @param {string} hichannelChannelName Hichannel 頻道名稱
+     * @param {String} hichannelChannelName Hichannel 頻道名稱
      * @param {Proxy|null} proxy 代理伺服器 (預設不使用代理)
      */
     constructor(hichannelChannelName, proxy = null) {
@@ -33,7 +32,7 @@ class HiNetHichannel {
     /**
      * 加載 API
      *
-     * @returns {void}
+     * @returns {Promise<void>}
      */
     async loadApi() {
         const api = await this._hichannel.loadApi();
@@ -47,7 +46,7 @@ class HiNetHichannel {
     /**
      * Hichannel 播放網址 (m3u8)
      *
-     * @returns {string|Error}
+     * @returns {Promise<String>}
      */
     async playUrl() {
         if (this._loadApi) {
@@ -74,7 +73,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道名稱
      *
-     * @returns {string|Error}
+     * @returns {String}
      */
     title() {
         if (this._loadApi) {
@@ -93,7 +92,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道 ID
      *
-     * @returns {string}
+     * @returns {String}
      */
     id() {
         if (this._loadApi) {
@@ -112,7 +111,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道描述
      *
-     * @returns {string|Error}
+     * @returns {String}
      */
     desc() {
         if (this._loadApi) {
@@ -131,7 +130,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道區域
      *
-     * @returns {string|Error}
+     * @returns {String}
      */
     area() {
         if (this._loadApi) {
@@ -150,7 +149,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道類型
      *
-     * @returns {string|Error}
+     * @returns {String}
      */
     type() {
         if (this._loadApi) {
@@ -169,7 +168,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道圖片網址
      *
-     * @returns {string|Error}
+     * @returns {String}
      */
     imageUrl() {
         if (this._loadApi) {
@@ -188,7 +187,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道節目表
      *
-     * @returns {object|Error}
+     * @returns {Object}
      */
     programList() {
         if (this._loadApi) {
@@ -207,7 +206,7 @@ class HiNetHichannel {
     /**
      * Hichannel 頻道目前節目名稱
      *
-     * @returns {string|Error}
+     * @returns {String}
      */
     nowProgramName() {
         if (this._loadApi) {

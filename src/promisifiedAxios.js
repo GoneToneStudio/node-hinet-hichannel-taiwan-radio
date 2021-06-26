@@ -16,10 +16,10 @@ const axios = require("axios");
 const HttpsProxyAgent = require("https-proxy-agent");
 
 /**
- * @param {string} url 網址
+ * @param {String} url 網址
  * @param {Proxy|null} proxy 代理伺服器 (預設不使用代理)
  *
- * @returns {Promise<axios.response>|boolean}
+ * @returns {Promise<axios.response>|Boolean}
  */
 const promisifiedAxios = (url, proxy = null) => {
     let options = {};

@@ -14,13 +14,12 @@
 
 const promisifiedAxios = require("./promisifiedAxios");
 const m3u8Parser = require("m3u8-parser");
-const Proxy = require("./Proxy");
 
 class HichannelApi {
     /**
      * HichannelApi constructor.
      *
-     * @param {string} hichannelChannelName Hichannel 頻道名稱
+     * @param {String} hichannelChannelName Hichannel 頻道名稱
      * @param {Proxy|null} proxy 代理伺服器 (預設不使用代理)
      */
     constructor(hichannelChannelName, proxy = null) {
@@ -42,7 +41,7 @@ class HichannelApi {
     /**
      * 加載 API
      *
-     * @returns {boolean} 回傳結果
+     * @returns {Boolean} 回傳結果
      */
     async loadApi() {
         const hichannelApiUrl = `${this._hichannelUrl}${this._hichannelRadioPath}`;
@@ -72,7 +71,7 @@ class HichannelApi {
     /**
      * m3u8 串流網址
      *
-     * @returns {string|boolean} 回傳 m3u8 串流網址 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳 m3u8 串流網址 (失敗回傳 false)
      */
     async m3u8Url() {
         const axios = this._hichannelApiPlayerUrlAxios;
@@ -100,7 +99,7 @@ class HichannelApi {
     /**
      * 頻道名稱
      *
-     * @returns {string|boolean} 回傳頻道名稱 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳頻道名稱 (失敗回傳 false)
      */
     title() {
         const axios = this._hichannelApiProgramListAxios;
@@ -115,7 +114,7 @@ class HichannelApi {
     /**
      * 頻道 ID
      *
-     * @returns {string} 回傳頻道 ID
+     * @returns {String} 回傳頻道 ID
      */
     id() {
         return this._hichannelChannelID;
@@ -124,7 +123,7 @@ class HichannelApi {
     /**
      * 頻道描述
      *
-     * @returns {string|boolean} 回傳頻道描述 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳頻道描述 (失敗回傳 false)
      */
     desc() {
         const axios = this._hichannelApiProgramListAxios;
@@ -139,7 +138,7 @@ class HichannelApi {
     /**
      * 頻道區域
      *
-     * @returns {string|boolean} 回傳頻道區域 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳頻道區域 (失敗回傳 false)
      */
     area() {
         const axios = this._hichannelApiProgramListAxios;
@@ -154,7 +153,7 @@ class HichannelApi {
     /**
      * 頻道類型
      *
-     * @returns {string|boolean} 回傳頻道類型 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳頻道類型 (失敗回傳 false)
      */
     type() {
         const axios = this._hichannelApiProgramListAxios;
@@ -169,7 +168,7 @@ class HichannelApi {
     /**
      * 頻道圖片網址
      *
-     * @returns {string|boolean} 回傳頻道圖片網址 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳頻道圖片網址 (失敗回傳 false)
      */
     imageUrl() {
         const axios = this._hichannelApiProgramListAxios;
@@ -184,7 +183,7 @@ class HichannelApi {
     /**
      * 頻道節目表
      *
-     * @returns {object|boolean} 回傳頻道節目表 (失敗回傳 false)
+     * @returns {Object|Boolean} 回傳頻道節目表 (失敗回傳 false)
      */
     programList() {
         const axios = this._hichannelApiProgramListAxios;
@@ -199,7 +198,7 @@ class HichannelApi {
     /**
      * 頻道目前節目名稱
      *
-     * @returns {string|boolean} 回傳目前節目名稱 (失敗回傳 false)
+     * @returns {String|Boolean} 回傳目前節目名稱 (失敗回傳 false)
      */
     nowProgramName() {
         const axios = this._hichannelApiProgramNowAxios;
