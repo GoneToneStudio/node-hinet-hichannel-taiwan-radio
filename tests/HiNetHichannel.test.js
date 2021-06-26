@@ -22,7 +22,7 @@ test('Init', () => {
 
 test('Load Api', async () => {
   await hichannel.loadApi();
-});
+}, 150000);
 
 test('Get Play Url', async () => {
   const playUrl = await hichannel.playUrl();
