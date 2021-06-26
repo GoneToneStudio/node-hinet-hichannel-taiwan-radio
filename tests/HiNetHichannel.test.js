@@ -27,7 +27,7 @@ test('Load Api', async () => {
 test('Get Play Url', async () => {
   const playUrl = await hichannel.playUrl();
   expect(playUrl).toMatch(/https?:\/\/(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])\/live\/[a-zA-Z0-9]+\/chunklist\.m3u8\?token=(.*)&expires=(.*)/i);
-});
+}, 150000);
 
 test('Get Title', () => {
   const title = hichannel.title();
