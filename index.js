@@ -1,19 +1,41 @@
-/**
- * Copyright 2020 GoneTone
+/*
+ * Copyright (c) 2014-2021 旋風之音 GoneTone
  *
- * HiNet hichannel 台灣電台
- * https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio
+ * Website: https://blog.reh.tw/
+ * GitHub: https://github.com/GoneTone
+ * Facebook: https://www.facebook.com/GoneToneDY
+ * Twitter: https://twitter.com/TPGoneTone
  *
- * @author   張文相 Zhang Wenxiang (旋風之音 GoneTone) <https://blog.reh.tw>
- * @license  MIT <https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio/blob/master/LICENSE>
+ *                               _oo0oo_
+ *                              o8888888o
+ *                              88" . "88
+ *                              (| -_- |)
+ *                              0\  =  /0
+ *                            ___/`---'\___
+ *                          .' \\|     |# '.
+ *                         / \\|||  :  |||# \
+ *                        / _||||| -:- |||||- \
+ *                       |   | \\\  -  #/ |   |
+ *                       | \_|  ''\---/''  |_/ |
+ *                       \  .-\__  '-'  ___/-. /
+ *                     ___'. .'  /--.--\  `. .'___
+ *                  ."" '<  `.___\_<|>_/___.' >' "".
+ *                 | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+ *                 \  \ `_.   \_ __\ /__ _/   .-` /  /
+ *             =====`-.____`.___ \_____/___.-`___.-'=====
+ *                               `=---='
+ *           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *               佛祖保佑                       永無 BUG
+ *
+ * Project GitHub: https://github.com/GoneToneStudio/node-google-play-api
  */
 
-'use strict';
+'use strict'
 
-const HiNetHichannel = require("./src/HiNetHichannel");
-const Proxy = require("./src/Proxy");
+const HiNetHichannel = require('./src/HiNetHichannel')
+const Proxy = require('./src/Proxy')
 
 module.exports = {
-    HiNetHichannel,
-    Proxy
-};
+  HiNetHichannel,
+  Proxy
+}

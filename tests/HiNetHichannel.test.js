@@ -1,70 +1,69 @@
-/**
- * Copyright 2021 GoneTone
+/*
+ * Copyright (c) 2014-2021 旋風之音 GoneTone
  *
- * HiNet hichannel 台灣電台
- * https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio
+ * Website: https://blog.reh.tw/
+ * GitHub: https://github.com/GoneTone
+ * Facebook: https://www.facebook.com/GoneToneDY
+ * Twitter: https://twitter.com/TPGoneTone
  *
- * @author   張文相 Zhang Wenxiang (旋風之音 GoneTone) <https://blog.reh.tw>
- * @license  MIT <https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio/blob/master/LICENSE>
+ *                               _oo0oo_
+ *                              o8888888o
+ *                              88" . "88
+ *                              (| -_- |)
+ *                              0\  =  /0
+ *                            ___/`---'\___
+ *                          .' \\|     |# '.
+ *                         / \\|||  :  |||# \
+ *                        / _||||| -:- |||||- \
+ *                       |   | \\\  -  #/ |   |
+ *                       | \_|  ''\---/''  |_/ |
+ *                       \  .-\__  '-'  ___/-. /
+ *                     ___'. .'  /--.--\  `. .'___
+ *                  ."" '<  `.___\_<|>_/___.' >' "".
+ *                 | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+ *                 \  \ `_.   \_ __\ /__ _/   .-` /  /
+ *             =====`-.____`.___ \_____/___.-`___.-'=====
+ *                               `=---='
+ *           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *               佛祖保佑                       永無 BUG
  *
- * HiNetHichannel Test
+ * Project GitHub: https://github.com/GoneToneStudio/node-google-play-api
  */
 
-const {HiNetHichannel, Proxy} = require("..");
+'use strict'
 
-let hichannel;
+require('dotenv').config()
+
+const { HiNetHichannel, Proxy } = require('..')
+
+let hichannel
 test('Init', () => {
-  const proxy = new Proxy("gonetone.reh.tw", 3128, "http");
-  proxy.login(process.env.PROXY_TEST_USERNAME, process.env.PROXY_TEST_PASSWORD);
+  const proxy = new Proxy('gonetone.reh.tw', 3128, 'http')
+  proxy.login(process.env.PROXY_TEST_USERNAME, process.env.PROXY_TEST_PASSWORD)
 
-  hichannel = new HiNetHichannel("KISS RADIO 大眾廣播電台", proxy);
-});
+  hichannel = new HiNetHichannel(proxy)
+})
 
-test('Load Api', async () => {
-  await hichannel.loadApi();
-}, 150000);
+test('Get All Channels', async () => {
+  const channels = await hichannel.getChannels()
+  expect(Array.isArray(channels)).toBe(true)
+}, 150000)
 
-test('Get Play Url', async () => {
-  const playUrl = await hichannel.playUrl();
-  expect(playUrl).toMatch(/https?:\/\/(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])\/live\/[a-zA-Z0-9]+\/chunklist\.m3u8\?token=(.*)&expires=(.*)/i);
-}, 150000);
+test('Get Specified Channel Data', async () => {
+  const channel = await hichannel.getChannel('KISS RADIO 大眾廣播電台')
+  expect(channel && typeof channel === 'object').toBe(true)
+}, 150000)
 
-test('Get Title', () => {
-  const title = hichannel.title();
-  expect(typeof title).toBe('string');
-});
+test('Set Channel', () => {
+  hichannel.setChannel('KISS RADIO 大眾廣播電台')
+})
 
-test('Get ID', () => {
-  const id = hichannel.id();
-  expect(typeof id).toBe('string');
-});
+test('Get Channel m3u8 Url', async () => {
+  const m3u8Url = await hichannel.getChannelM3u8Url()
+  expect(m3u8Url).toMatch(/https?:\/\/(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9-]*[A-Za-z0-9])\/live\/[a-zA-Z0-9]+\/chunklist\.m3u8\?token=(.*)&expires=(.*)/i)
+}, 150000)
 
-test('Get Desc', () => {
-  const desc = hichannel.desc();
-  expect(typeof desc).toBe('string');
-});
-
-test('Get Area', () => {
-  const area = hichannel.area();
-  expect(typeof area).toBe('string');
-});
-
-test('Get Type', () => {
-  const type = hichannel.type();
-  expect(typeof type).toBe('string');
-});
-
-test('Get Image Url', () => {
-  const imageUrl = hichannel.imageUrl();
-  expect(imageUrl).toMatch(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/i);
-});
-
-test('Get Now Program Name', () => {
-  const nowProgramName = hichannel.nowProgramName();
-  expect(typeof nowProgramName).toBe('string');
-});
-
-test('Get Program List', () => {
-  const programList = hichannel.programList();
-  expect(Array.isArray(programList)).toBe(true);
-});
+test('Get Channel Program Info', async () => {
+  const programInfo = await hichannel.getChannelProgramInfo()
+  expect(programInfo && typeof programInfo === 'object').toBe(true)
+}, 150000)
