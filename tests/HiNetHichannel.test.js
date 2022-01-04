@@ -49,6 +49,11 @@ test('Get All Channels', async () => {
   expect(Array.isArray(channels)).toBe(true)
 }, 150000)
 
+test('Get Ranking Channels', async () => {
+  const channels = await hichannel.getRankingChannels()
+  expect(Array.isArray(channels)).toBe(true)
+}, 150000)
+
 test('Get Specified Channel Data', async () => {
   const channel = await hichannel.getChannel('KISS RADIO 大眾廣播電台')
   expect(channel && typeof channel === 'object').toBe(true)

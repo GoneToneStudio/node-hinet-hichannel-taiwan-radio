@@ -52,9 +52,10 @@ class HiNetHichannel {
     this._hichannelImagePath = '/upload/radio/channel/'
 
     this._hichannelApiChannelList = 'channelList.do'
+    this._hichannelApiRanking = 'getRanking.do'
     this._hichannelApiPlayerUrl = 'cp.do'
     this._hichannelApiProgramList = 'getProgramList.do'
-    this._hichannelApiProgramNow = 'getNowProgram.do'
+    this._hichannelApiNowProgram = 'getNowProgram.do'
 
     const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
     this._axiosInstance = axios.create({
@@ -83,6 +84,20 @@ class HiNetHichannel {
       return response.data.list
     } catch (e) {
       throw Error(`取得所有 Hichannel 電台頻道時發生錯誤：${e.message}`)
+    }
+  }
+
+  /**
+   * 取得熱門排行電台頻道
+   *
+   * @returns {Promise<[]>}
+   */
+  async getRankingChannels () {
+    try {
+      const response = await this._axiosInstance.get(`${this._hichannelRadioPath}${this._hichannelApiRanking}`)
+      return response.data.list
+    } catch (e) {
+      throw Error(`取得 Hichannel 熱門排行電台頻道時發生錯誤：${e.message}`)
     }
   }
 
@@ -180,7 +195,7 @@ class HiNetHichannel {
           }
         })
 
-        const programNow = await this._axiosInstance.get(`${this._hichannelRadioPath}${this._hichannelApiProgramNow}`, {
+        const nowProgram = await this._axiosInstance.get(`${this._hichannelRadioPath}${this._hichannelApiNowProgram}`, {
           params: {
             id: channel.id,
             program: 1
@@ -198,7 +213,7 @@ class HiNetHichannel {
           preDate: programList.data.preDate,
           showDate: programList.data.showDate,
           nextDate: programList.data.nextDate,
-          nowProgramName: programNow.data.programName,
+          nowProgramName: nowProgram.data.programName,
           programList: programList.data.list
         }
       } catch (e) {
