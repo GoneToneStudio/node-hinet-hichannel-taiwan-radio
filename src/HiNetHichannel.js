@@ -37,7 +37,6 @@ const Proxy = require('./Proxy')
 
 const axios = require('axios')
 const HttpsProxyAgent = require('https-proxy-agent')
-const m3u8Parser = require('m3u8-parser')
 
 class HiNetHichannel {
   /**
@@ -161,16 +160,7 @@ class HiNetHichannel {
           }
         })
 
-        const m3u8Url = response.data._adc
-        const m3u8 = await this._axiosInstance.get(m3u8Url)
-
-        const parseUrl = new URL(m3u8Url)
-        const parserM3u8Url = new m3u8Parser.Parser()
-
-        parserM3u8Url.push(m3u8.data)
-        parserM3u8Url.end()
-
-        return `${parseUrl.protocol}//${parseUrl.hostname}${parseUrl.pathname.replace('playlist.m3u8', parserM3u8Url.manifest.playlists[0].uri)}`
+        return response.data._adc
       } catch (e) {
         throw Error(`取得 Hichannel 電台頻道「${channel.title}」m3u8 網址時發生錯誤：${e.message}`)
       }

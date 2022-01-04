@@ -34,9 +34,8 @@
     },
     "homepage": "https://github.com/GoneToneStudio/node-hinet-hichannel-taiwan-radio",
     "dependencies": {
-        "axios": "^0.21.0",
-        "https-proxy-agent": "^5.0.0",
-        "m3u8-parser": "^4.5.0"
+        "axios": "^0.24.0",
+        "https-proxy-agent": "^5.0.0"
     },
     "devDependencies": {
         "dotenv": "^10.0.0",

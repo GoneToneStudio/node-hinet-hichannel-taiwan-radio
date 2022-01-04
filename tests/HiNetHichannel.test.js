@@ -65,7 +65,7 @@ test('Set Channel', () => {
 
 test('Get Channel m3u8 Url', async () => {
   const m3u8Url = await hichannel.getChannelM3u8Url()
-  expect(m3u8Url).toMatch(/https?:\/\/(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9-]*[A-Za-z0-9])\/live\/[a-zA-Z0-9]+\/chunklist\.m3u8\?token=(.*)&expires=(.*)/i)
+  expect(m3u8Url).toMatch(/https?:\/\/(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9-]*[A-Za-z0-9])\/live\/[a-zA-Z0-9]+\/playlist\.m3u8\?token=(.*)&expires=(.*)/i)
 }, 150000)
 
 test('Get Channel Program Info', async () => {
