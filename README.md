@@ -44,6 +44,15 @@ hichannel.getChannels().then((channels) => {
 })
 ```
 
+### 取得熱門排行電台頻道
+
+```javascript
+hichannel.getRankingChannels().then((channels) => {
+  console.log('熱門排行電台頻道：')
+  console.log(channels)
+})
+```
+
 ### 取得指定電台頻道資料
 
 ```javascript
