@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2021 旋風之音 GoneTone
+ * Copyright (c) 2014-2022 旋風之音 GoneTone
  *
  * Website: https://blog.reh.tw/
  * GitHub: https://github.com/GoneTone
@@ -30,12 +30,11 @@
  * Project GitHub: https://github.com/GoneToneStudio/node-google-play-api
  */
 
-'use strict'
-
-const HiNetHichannel = require('./src/HiNetHichannel')
-const Proxy = require('./src/Proxy')
-
-module.exports = {
-  HiNetHichannel,
-  Proxy
+export interface Data {
+  programName: string;
+  tomeout: number;
+  programDay: string;
+  canOpenPlayer: boolean;
+  timeRange: string;
+  on: boolean;
 }

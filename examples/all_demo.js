@@ -7,15 +7,33 @@ const { HiNetHichannel } = require('..')
  * 如果運行此程式的伺服器不在台灣，請設定台灣的 Proxy 伺服器，否則取得的串流網址會驗證失敗 (HTTP 403 Forbidden)，
  * 但如果播放端 IP 和用來取得 m3u8 串流網址的伺服器 IP 不同一樣會被阻擋就是了，可以嘗試在伺服端處理好在串流給播放端，就二次串流。
  */
-// const proxy = new Proxy('主機名', 3128, 'http')
+/*
+const proxy = new Proxy({
+  host: '主機名',
+  port: 3128,
+  protocol: 'http'
+})
+*/
 // proxy.login('帳號', '密碼') // 如果 Proxy 伺服器需要驗證，請調用這登入
 
 const hichannel = new HiNetHichannel()
 // const hichannel = new HiNetHichannel(proxy) // Proxy
 
-/* 取得所有電台頻道 */
+/* 取得所有電台頻道列表 */
 hichannel.getChannels().then((channels) => {
-  console.log('所有電台頻道：')
+  console.log('所有電台頻道列表：')
+  console.log(channels)
+})
+
+/* 利用關鍵字搜尋取得電台頻道列表 */
+hichannel.getChannels('警廣').then((channels) => {
+  console.log('關鍵字搜尋電台頻道列表：')
+  console.log(channels)
+})
+
+/* 取得熱門排行電台頻道列表 */
+hichannel.getRankingChannels().then((channels) => {
+  console.log('熱門排行電台頻道列表：')
   console.log(channels)
 })
 
